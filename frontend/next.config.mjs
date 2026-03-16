@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // standalone은 Docker용
+  // output: "standalone",
   reactStrictMode: true,
 
   async rewrites() {
