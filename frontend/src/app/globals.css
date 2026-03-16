@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ───────────────────────────────────────────────────────────
+   영동테크 ERP 디자인 시스템
+   Brand: 앰버/골드(#D4920A) + 차콜 블랙(#141414)
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --bg-primary:    #141414;
+  --bg-secondary:  #1e1e1e;
+  --bg-tertiary:   #2a2a2a;
+  --border:        #383838;
+  --border-light:  #484848;
+  --text-primary:  #f0f0f0;
+  --text-secondary:#a8a8a8;
+  --text-muted:    #666666;
+
+  /* 영동테크 브랜드 */
+  --brand:         #D4920A;
+  --brand-light:   #f59e0b;
+  --brand-dark:    #b45309;
+  --brand-glow:    rgba(212, 146, 10, 0.25);
+
+  /* 상태 컬러 */
+  --accent-green:  #4A8C3A;
+  --accent-cyan:   #06b6d4;
+  --accent-purple: #8b5cf6;
+  --accent-amber:  #f59e0b;
+  --accent-red:    #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* selection */
+::selection { background: rgba(212,146,10,0.3); color: #f0f0f0; }
+
+@layer components {
+  .card {
+    @apply bg-surface-card border border-surface-border rounded-xl p-5 shadow-card;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-brand-600/50 hover:shadow-glow cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-semibold
+           transition-all duration-150 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-surface-hover hover:bg-surface-border text-slate-200 px-4 py-2 rounded-lg text-sm font-medium
+           border border-surface-border transition-all duration-150 flex items-center gap-2;
+  }
+
+  .btn-danger {
+    @apply bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30
+           px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 flex items-center gap-2;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-brand  { @apply badge bg-amber-900/30 text-amber-400 border border-amber-600/30; }
+  .badge-blue   { @apply badge bg-blue-900/40 text-blue-300 border border-blue-700/40; }
+  .badge-green  { @apply badge bg-green-900/40 text-green-400 border border-green-700/40; }
+  .badge-amber  { @apply badge bg-amber-900/40 text-amber-400 border border-amber-700/40; }
+  .badge-red    { @apply badge bg-red-900/40 text-red-400 border border-red-700/40; }
+  .badge-purple { @apply badge bg-purple-900/40 text-purple-400 border border-purple-700/40; }
+  .badge-gray   { @apply badge bg-surface-hover text-slate-400 border border-surface-border; }
+  .badge-info    { @apply badge-blue; }
+  .badge-success { @apply badge-green; }
+  .badge-warning { @apply badge-amber; }
+  .badge-danger  { @apply badge-red; }
+
+  .input {
+    @apply w-full bg-surface border border-surface-border rounded-lg px-3 py-2
+           text-sm text-slate-200 placeholder:text-slate-500
+           focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600
+           transition-colors duration-150;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           transition-all duration-150 cursor-pointer;
+    color: #888;
+  }
+
+  .sidebar-item:hover {
+    background: var(--bg-tertiary);
+    color: #e0e0e0;
+  }
+
+  .sidebar-item.active {
+    color: var(--brand-light);
+    background: rgba(212,146,10,0.12);
+    border: 1px solid rgba(212,146,10,0.25);
+  }
+
+  .kpi-card {
+    @apply card flex flex-col gap-2 min-h-[120px];
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+
+  .status-dot.online  { @apply animate-pulse-slow; background: #4A8C3A; }
+  .status-dot.warning { background: #D4920A; }
+  .status-dot.error   { background: #ef4444; }
+  .status-dot.idle    { background: #555; }
+}

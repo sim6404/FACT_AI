@@ -1,0 +1,171 @@
+version: "3.9"
+
+# ── F.A.C.T Docker Compose (개발 / 소형 운영 환경) ──────────────
+# 컨테이너 3개 기본 구성: web | api | worker
+# 프로덕션에서는 ECS Fargate / Azure Container Apps / Cloud Run 권장
+
+x-api-env: &api-env
+  ENVIRONMENT:        ${ENVIRONMENT:-development}
+  DEBUG:              ${DEBUG:-true}
+  SECRET_KEY:         ${SECRET_KEY:?SECRET_KEY required}
+  POSTGRES_HOST:      postgres
+  POSTGRES_PORT:      5432
+  POSTGRES_DB:        fact_app
+  POSTGRES_USER:      fact
+  POSTGRES_PASSWORD:  ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required}
+  SNOWFLAKE_ACCOUNT:  ${SNOWFLAKE_ACCOUNT:?}
+  SNOWFLAKE_USER:     ${SNOWFLAKE_USER:?}
+  SNOWFLAKE_PASSWORD: ${SNOWFLAKE_PASSWORD:-}
+  SNOWFLAKE_PRIVATE_KEY_PATH: ${SNOWFLAKE_PRIVATE_KEY_PATH:-}
+  SNOWFLAKE_WAREHOUSE: ${SNOWFLAKE_WAREHOUSE:-FACT_WH_S}
+  SNOWFLAKE_DATABASE:  ${SNOWFLAKE_DATABASE:-FACT_DB}
+  SNOWFLAKE_ROLE:      ${SNOWFLAKE_ROLE:-FACT_APP_ROLE}
+  REDIS_URL:          redis://redis:6379/0
+  ALLOWED_ORIGINS:    "http://localhost:3000,http://web:3000"
+  SLACK_WEBHOOK_URL:  ${SLACK_WEBHOOK_URL:-}
+  SMTP_HOST:          ${SMTP_HOST:-}
+  AWS_REGION:         ${AWS_REGION:-ap-northeast-2}
+  AWS_ACCESS_KEY_ID:  ${AWS_ACCESS_KEY_ID:-}
+  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+
+services:
+  # ── Frontend ───────────────────────────────────────────────
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: fact-web
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+      NODE_ENV: ${ENVIRONMENT:-development}
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - fact-net
+
+  # ── API Server ─────────────────────────────────────────────
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fact-api
+    ports:
+      - "8000:8000"
+    environment:
+      <<: *api-env
+    volumes:
+      - ./backend:/app
+      - fact-uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      uvicorn app.main:app
+        --host 0.0.0.0
+        --port 8000
+        --reload
+        --log-level info
+    restart: unless-stopped
+    networks:
+      - fact-net
+
+  # ── Celery Worker ──────────────────────────────────────────
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fact-worker
+    environment:
+      <<: *api-env
+    volumes:
+      - ./backend:/app
+      - fact-uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      celery -A app.workers.celery_app worker
+        --loglevel=info
+        --concurrency=4
+        -Q default,reports,connectors
+    restart: unless-stopped
+    networks:
+      - fact-net
+
+  # ── Celery Beat (스케줄러) ─────────────────────────────────
+  beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fact-beat
+    environment:
+      <<: *api-env
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+    command: >
+      celery -A app.workers.celery_app beat
+        --loglevel=info
+        --scheduler celery.beat:PersistentScheduler
+    restart: unless-stopped
+    networks:
+      - fact-net
+    profiles:
+      - scheduler   # docker compose --profile scheduler up
+
+  # ── PostgreSQL ─────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: fact-postgres
+    environment:
+      POSTGRES_DB:       fact_app
+      POSTGRES_USER:     fact
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - fact-pgdata:/var/lib/postgresql/data
+      - ./backend/migrations/001_init_postgresql.sql:/docker-entrypoint-initdb.d/001_init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fact -d fact_app"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - fact-net
+
+  # ── Redis ──────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: fact-redis
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - fact-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - fact-net
+
+networks:
+  fact-net:
+    driver: bridge
+
+volumes:
+  fact-pgdata:
+  fact-redis:
+  fact-uploads:

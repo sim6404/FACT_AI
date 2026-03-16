@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__PDF_Tools_-_Analyze__Extract__Fill__Compare__read_pdf_content",
+      "mcp__Windows-MCP__PowerShell",
+      "mcp__Windows-MCP__FileSystem",
+      "Bash(Get-ChildItem -Recurse -Path \"E:\\\\FACT_claude\\\\frontend\\\\src\\\\app\\\\erp\" -Name)",
+      "Bash(Sort-Object)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(netstat -ano)",
+      "Bash(curl -s http://localhost:8000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(npm install:*)",
+      "Bash(where npm:*)",
+      "Bash(where node:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:62529/dashboard)",
+      "WebFetch(domain:youngdongtech.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:65014/dashboard)",
+      "Bash(node -e \"require\\(''''./tailwind.config.ts''''\\)\")",
+      "Bash(npx tailwindcss:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:62707/dashboard)",
+      "Bash(ls E:/FACT_claude/frontend/postcss*)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''dependencies'''',{}\\), indent=2\\)\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''devDependencies'''',{}\\), indent=2\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:60494/dashboard)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $f/layout.tsx ===\")",
+      "Read(//e/FACT_claude/frontend/src/app/$f/**)",
+      "Bash(done)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:50364/dashboard)",
+      "Bash(sed -i 's/bg-amber-600 hover:bg-blue-700/bg-amber-600 hover:bg-amber-700/g' inventory/page.tsx quality/page.tsx production/page.tsx orders/page.tsx purchase/page.tsx)",
+      "Bash(sed -i 's/shadow-blue-500\\\\/20/shadow-amber-500\\\\/20/g' inventory/page.tsx orders/page.tsx)",
+      "Bash(find \"E:/FACT_claude/frontend/src/app/\\(auth\\)\" -type f)",
+      "Bash(ls -la \"E:/FACT_claude/frontend/src/app/\\(auth\\)/\")",
+      "Bash(grep -r \"localStorage\\\\|sessionStorage\\\\|Cookie\" E:/FACT_claude/frontend/src --include=*.ts --include=*.tsx -n)",
+      "Bash(gh auth:*)",
+      "Bash(git --version)",
+      "Bash(git config:*)"
+    ]
+  }
+}
