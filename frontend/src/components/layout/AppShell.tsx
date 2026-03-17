@@ -7,6 +7,7 @@ import { TopBar } from "./TopBar";
 import { useAuth } from "@/lib/auth";
 
 const AUTH_ROUTES = ["/login", "/signup"];
+const MARKETING_ROUTES = ["/", "/platform", "/solutions", "/pricing", "/about", "/blog"];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -15,15 +16,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
 
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
+  const isMarketingRoute = MARKETING_ROUTES.includes(pathname) || pathname.startsWith("/blog");
 
   useEffect(() => {
-    if (!loading && !user && !isAuthRoute) {
+    if (!loading && !user && !isAuthRoute && !isMarketingRoute) {
       router.push("/login");
     }
-  }, [user, loading, isAuthRoute, router, pathname]);
+  }, [user, loading, isAuthRoute, isMarketingRoute, router, pathname]);
 
-  // 인증 페이지: 셸 없이 렌더링
-  if (isAuthRoute) {
+  // 마케팅/인증 페이지: 셸 없이 렌더링
+  if (isAuthRoute || isMarketingRoute) {
     return <>{children}</>;
   }
 
