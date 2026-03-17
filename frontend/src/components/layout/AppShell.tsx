@@ -7,8 +7,8 @@ import { TopBar } from "./TopBar";
 import { useAuth } from "@/lib/auth";
 
 const AUTH_ROUTES = ["/login", "/signup"];
-const MARKETING_ROUTES = ["/", "/platform", "/solutions", "/pricing", "/about", "/blog", "/cases"];
-const MARKETING_PREFIXES = ["/blog", "/industries", "/resources"];
+const MARKETING_ROUTES = ["/", "/platform", "/solutions", "/pricing", "/about", "/blog", "/cases", "/demo"];
+const MARKETING_PREFIXES = ["/blog", "/industries", "/resources", "/platform/", "/solutions/"];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

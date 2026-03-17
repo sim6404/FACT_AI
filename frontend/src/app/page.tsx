@@ -157,7 +157,7 @@ function HeroSection() {
             letterSpacing: "-0.03em",
           }}
         >
-          제조 업무 자동화의
+          기업 업무 자동화의
           <br />
           <span style={{ color: AMBER }}>새로운 기준</span>
         </h1>
@@ -243,7 +243,7 @@ function TrustedBySection() {
           className="text-center text-sm mb-8 tracking-widest uppercase"
           style={{ color: TEXT_MUTED }}
         >
-          이미 선도 제조기업들이 신뢰합니다
+          이미 선도 기업들이 신뢰합니다
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
           {logos.map((name) => (
@@ -325,8 +325,8 @@ function WhyFactSection() {
             className="max-w-xl mx-auto"
             style={{ color: TEXT_SECONDARY, fontSize: "1.05rem" }}
           >
-            20년간 쌓인 제조 현장 노하우와 최신 AI 기술의 결합으로, 현장에서
-            즉시 사용 가능한 자동화를 제공합니다.
+            20년간 쌓인 현장 노하우와 최신 AI 기술의 결합으로, 즉시 사용
+            가능한 기업 업무 자동화를 제공합니다.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -1118,7 +1118,7 @@ function CtaSection() {
             letterSpacing: "-0.03em",
           }}
         >
-          제조 현장의 AI 혁신,
+          기업 업무 AI 혁신,
           <br />
           <span style={{ color: AMBER }}>오늘 바로 시작하세요</span>
         </h2>

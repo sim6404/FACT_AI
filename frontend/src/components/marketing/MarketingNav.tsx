@@ -7,16 +7,16 @@ import {
   Megaphone, Landmark, Heart, ShoppingCart, Factory, Building2, Bolt, Radio,
   Code2, Database, LineChart, Briefcase,
   BookOpen, FileText, Video, Users,
-  Info, Newspaper, Handshake, UserPlus,
+  Play,
 } from "lucide-react";
 
 /* ─── Menu data ─────────────────────────────────────────── */
 const PLATFORM_ITEMS = [
-  { icon: Cpu,       label: "AI 에이전트 플랫폼",   sub: "자율 실행 AI 에이전트", href: "/platform#agent" },
-  { icon: BarChart3, label: "데이터 분석 엔진",     sub: "실시간 KPI & 인사이트", href: "/platform#analytics" },
-  { icon: Zap,       label: "자동화 워크플로우",    sub: "업무 자동화 설계·실행", href: "/platform#automation" },
-  { icon: Shield,    label: "보안·거버넌스",        sub: "엔터프라이즈급 보안", href: "/platform#security" },
-  { icon: Plug,      label: "통합·연동",            sub: "ERP·MES·클라우드 연결", href: "/platform#integration" },
+  { icon: Cpu,       label: "AI 에이전트 플랫폼",   sub: "자율 실행 AI 에이전트",    href: "/platform/agent" },
+  { icon: BarChart3, label: "데이터 분석 엔진",     sub: "실시간 KPI & 인사이트",    href: "/platform/analytics" },
+  { icon: Zap,       label: "자동화 워크플로우",    sub: "업무 자동화 설계·실행",     href: "/platform/automation" },
+  { icon: Shield,    label: "보안·거버넌스",        sub: "엔터프라이즈급 보안",       href: "/platform/security" },
+  { icon: Plug,      label: "통합·연동",            sub: "ERP·MES·클라우드 연결",    href: "/platform/integration" },
 ];
 
 const INDUSTRY_ITEMS = [
@@ -31,28 +31,21 @@ const INDUSTRY_ITEMS = [
 ];
 
 const ROLE_ITEMS = [
-  { icon: Database,   label: "데이터 엔지니어", href: "/solutions#engineer" },
-  { icon: LineChart,  label: "데이터 분석가",   href: "/solutions#analyst" },
-  { icon: Code2,      label: "개발자",           href: "/solutions#developer" },
-  { icon: Briefcase,  label: "경영진",           href: "/solutions#executive" },
+  { icon: Database,   label: "데이터 엔지니어", href: "/solutions/engineer" },
+  { icon: LineChart,  label: "데이터 분석가",   href: "/solutions/analyst" },
+  { icon: Code2,      label: "개발자",           href: "/solutions/developer" },
+  { icon: Briefcase,  label: "경영진",           href: "/solutions/executive" },
 ];
 
 const RESOURCE_ITEMS = [
-  { icon: BookOpen,  label: "문서·가이드", sub: "통합 가이드 & API 레퍼런스", href: "/resources/docs" },
-  { icon: FileText,  label: "블로그",     sub: "인사이트 & 산업 동향",       href: "/resources/blog" },
-  { icon: Video,     label: "웨비나·이벤트", sub: "온라인 세미나 & 컨퍼런스", href: "/resources/events" },
-  { icon: Users,     label: "파트너 생태계", sub: "SI·MSP 파트너 네트워크",   href: "/resources/partners" },
-];
-
-const COMPANY_ITEMS = [
-  { icon: Info,       label: "회사소개",   sub: "(주)포디비전 & F.A.C.T 소개", href: "/about" },
-  { icon: Newspaper,  label: "뉴스룸",     sub: "보도자료 & 최신 소식",       href: "/about#news" },
-  { icon: Handshake,  label: "파트너십",   sub: "파트너 프로그램 신청",       href: "/about#partner" },
-  { icon: UserPlus,   label: "채용",       sub: "함께 성장할 인재를 찾습니다", href: "/about#careers" },
+  { icon: BookOpen,  label: "문서·가이드",    sub: "통합 가이드 & API 레퍼런스",   href: "/resources/docs" },
+  { icon: FileText,  label: "블로그",         sub: "인사이트 & 산업 동향",         href: "/resources/blog" },
+  { icon: Video,     label: "웨비나·이벤트",  sub: "온라인 세미나 & 컨퍼런스",     href: "/resources/events" },
+  { icon: Users,     label: "파트너 생태계",  sub: "SI·MSP 파트너 네트워크",       href: "/resources/partners" },
 ];
 
 /* ─── Types ─────────────────────────────────────────────── */
-type MenuKey = "platform" | "solutions" | "resources" | "company" | null;
+type MenuKey = "platform" | "solutions" | "resources" | null;
 
 /* ─── MegaMenuPanel ─────────────────────────────────────── */
 function MegaMenuPanel({ children }: { children: React.ReactNode }) {
@@ -74,10 +67,8 @@ function MegaMenuPanel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ─── NavButton (top-level trigger) ─────────────────────── */
-function NavBtn({
-  label, active, onClick,
-}: { label: string; active: boolean; onClick: () => void }) {
+/* ─── NavButton ─────────────────────────────────────────── */
+function NavBtn({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -87,23 +78,20 @@ function NavBtn({
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}
     >
       {label}
-      <ChevronDown
-        className="w-3 h-3 transition-transform"
-        style={{ transform: active ? "rotate(180deg)" : "rotate(0deg)" }}
-      />
+      <ChevronDown className="w-3 h-3 transition-transform" style={{ transform: active ? "rotate(180deg)" : "rotate(0deg)" }} />
     </button>
   );
 }
 
 /* ─── MenuItem ───────────────────────────────────────────── */
-function MenuItem({
-  icon: Icon, label, sub, href, onClick,
-}: { icon: React.ElementType; label: string; sub?: string; href: string; onClick?: () => void }) {
+function MenuItem({ icon: Icon, label, sub, href, onClick }: {
+  icon: React.ElementType; label: string; sub?: string; href: string; onClick?: () => void;
+}) {
   return (
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-start gap-3 p-3 rounded-xl transition-all group"
+      className="flex items-start gap-3 p-3 rounded-xl transition-all"
       onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(212,146,10,0.08)")}
       onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
     >
@@ -135,7 +123,6 @@ export function MarketingNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -156,9 +143,7 @@ export function MarketingNav() {
         background: scrolled || activeMenu ? "rgba(10,10,10,0.97)" : "transparent",
         backdropFilter: scrolled || activeMenu ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled || activeMenu ? "blur(20px)" : "none",
-        borderBottom: scrolled || activeMenu
-          ? "1px solid rgba(212,146,10,0.15)"
-          : "1px solid transparent",
+        borderBottom: scrolled || activeMenu ? "1px solid rgba(212,146,10,0.15)" : "1px solid transparent",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between relative">
@@ -171,14 +156,11 @@ export function MarketingNav() {
             F
           </div>
           <span className="font-black text-white text-lg tracking-tight">
-            F.A.C.T{" "}
-            <span style={{ color: "#D4920A", fontSize: "0.8em", fontWeight: 900, letterSpacing: "0.05em" }}>
-              AI
-            </span>
+            F.A.C.T <span style={{ color: "#D4920A", fontSize: "0.8em", fontWeight: 900 }}>AI</span>
           </span>
         </Link>
 
-        {/* Desktop mega nav */}
+        {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-0 absolute left-1/2 -translate-x-1/2">
           <NavBtn label="플랫폼" active={activeMenu === "platform"} onClick={() => toggle("platform")} />
           <NavBtn label="솔루션" active={activeMenu === "solutions"} onClick={() => toggle("solutions")} />
@@ -188,6 +170,7 @@ export function MarketingNav() {
             style={{ color: "rgba(255,255,255,0.75)" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+            onClick={() => setActiveMenu(null)}
           >
             고객사례
           </Link>
@@ -198,36 +181,24 @@ export function MarketingNav() {
             style={{ color: "rgba(255,255,255,0.75)" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+            onClick={() => setActiveMenu(null)}
           >
             가격
           </Link>
-          <NavBtn label="회사" active={activeMenu === "company"} onClick={() => toggle("company")} />
 
           {/* ── Platform Mega ── */}
           {activeMenu === "platform" && (
             <MegaMenuPanel>
               <div className="p-6">
-                <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>
-                  FACT AI 플랫폼
-                </p>
+                <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>FACT AI 플랫폼</p>
                 <div className="grid grid-cols-3 gap-2">
                   {PLATFORM_ITEMS.map((item) => (
                     <MenuItem key={item.href} {...item} onClick={() => setActiveMenu(null)} />
                   ))}
                 </div>
-                <div
-                  className="mt-4 pt-4 flex items-center justify-between"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-                >
-                  <span className="text-xs" style={{ color: "#666" }}>
-                    F.A.C.T AI — AI 기반 제조·기업 업무 자동화 플랫폼
-                  </span>
-                  <Link
-                    href="/platform"
-                    className="text-xs font-semibold"
-                    style={{ color: "#D4920A" }}
-                    onClick={() => setActiveMenu(null)}
-                  >
+                <div className="mt-4 pt-4 flex items-center justify-between" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  <span className="text-xs" style={{ color: "#666" }}>F.A.C.T AI — AI 기반 기업 업무 자동화 플랫폼</span>
+                  <Link href="/platform" className="text-xs font-semibold" style={{ color: "#D4920A" }} onClick={() => setActiveMenu(null)}>
                     전체 플랫폼 보기 →
                   </Link>
                 </div>
@@ -239,41 +210,27 @@ export function MarketingNav() {
           {activeMenu === "solutions" && (
             <MegaMenuPanel>
               <div className="p-6 grid grid-cols-3 gap-6">
-                {/* Industries */}
                 <div className="col-span-2">
-                  <p className="text-xs font-semibold mb-3 tracking-widest uppercase" style={{ color: "#D4920A" }}>
-                    산업별 솔루션
-                  </p>
+                  <p className="text-xs font-semibold mb-3 tracking-widest uppercase" style={{ color: "#D4920A" }}>산업별 솔루션</p>
                   <div className="grid grid-cols-2 gap-1">
                     {INDUSTRY_ITEMS.map((item) => (
                       <MenuItem key={item.href} icon={item.icon} label={item.label} href={item.href} onClick={() => setActiveMenu(null)} />
                     ))}
                   </div>
                 </div>
-                {/* Roles */}
                 <div>
-                  <p className="text-xs font-semibold mb-3 tracking-widest uppercase" style={{ color: "#888" }}>
-                    직무별 솔루션
-                  </p>
+                  <p className="text-xs font-semibold mb-3 tracking-widest uppercase" style={{ color: "#888" }}>직무별 솔루션</p>
                   <div className="flex flex-col gap-1">
                     {ROLE_ITEMS.map((item) => (
                       <MenuItem key={item.href} icon={item.icon} label={item.label} href={item.href} onClick={() => setActiveMenu(null)} />
                     ))}
                   </div>
-                  <div
-                    className="mt-4 p-3 rounded-xl"
-                    style={{ background: "rgba(212,146,10,0.06)", border: "1px solid rgba(212,146,10,0.15)" }}
-                  >
+                  <div className="mt-4 p-3 rounded-xl" style={{ background: "rgba(212,146,10,0.06)", border: "1px solid rgba(212,146,10,0.15)" }}>
                     <p className="text-xs font-semibold" style={{ color: "#D4920A" }}>도입 문의</p>
                     <p className="text-xs mt-1" style={{ color: "#888" }}>기업별 맞춤 제안을 받아보세요</p>
-                    <Link
-                      href="mailto:ceo@4dvision.co.kr"
-                      className="text-xs font-semibold mt-2 block"
-                      style={{ color: "#D4920A" }}
-                      onClick={() => setActiveMenu(null)}
-                    >
+                    <a href="mailto:ceo@4dvision.co.kr" className="text-xs font-semibold mt-2 block" style={{ color: "#D4920A" }}>
                       ceo@4dvision.co.kr →
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -284,44 +241,11 @@ export function MarketingNav() {
           {activeMenu === "resources" && (
             <MegaMenuPanel>
               <div className="p-6">
-                <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>
-                  리소스
-                </p>
+                <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>리소스</p>
                 <div className="grid grid-cols-2 gap-2">
                   {RESOURCE_ITEMS.map((item) => (
                     <MenuItem key={item.href} {...item} onClick={() => setActiveMenu(null)} />
                   ))}
-                </div>
-              </div>
-            </MegaMenuPanel>
-          )}
-
-          {/* ── Company Mega ── */}
-          {activeMenu === "company" && (
-            <MegaMenuPanel>
-              <div className="p-6">
-                <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>
-                  회사
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  {COMPANY_ITEMS.map((item) => (
-                    <MenuItem key={item.href} {...item} onClick={() => setActiveMenu(null)} />
-                  ))}
-                </div>
-                <div
-                  className="mt-4 pt-4 flex items-center gap-3"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-                >
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm flex-shrink-0"
-                    style={{ background: "linear-gradient(135deg, #D4920A, #f59e0b)", color: "#0a0a0a" }}
-                  >
-                    4D
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>(주)포디비전</div>
-                    <div className="text-xs" style={{ color: "#666" }}>WORLD WIDE 4D SOLUTION</div>
-                  </div>
                 </div>
               </div>
             </MegaMenuPanel>
@@ -331,13 +255,14 @@ export function MarketingNav() {
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-3 z-10">
           <Link
-            href="mailto:ceo@4dvision.co.kr"
-            className="px-4 py-2 text-sm rounded-lg transition-all"
-            style={{ color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}
+            href="/demo"
+            className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg font-semibold transition-all"
+            style={{ color: "rgba(255,255,255,0.85)", border: "1px solid rgba(212,146,10,0.35)" }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#D4920A"; e.currentTarget.style.color = "#D4920A"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(212,146,10,0.35)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
           >
-            도입 문의
+            <Play className="w-3 h-3" />
+            무료 데모
           </Link>
           <Link
             href="/login"
@@ -362,101 +287,24 @@ export function MarketingNav() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div
-          className="lg:hidden overflow-y-auto"
-          style={{
-            maxHeight: "calc(100vh - 64px)",
-            background: "rgba(10,10,10,0.98)",
-            borderBottom: "1px solid rgba(212,146,10,0.2)",
-          }}
-        >
-          {/* Platform */}
-          <MobileSection
-            label="플랫폼"
-            expanded={mobileExpanded === "platform"}
-            onToggle={() => setMobileExpanded((p) => (p === "platform" ? null : "platform"))}
-          >
-            {PLATFORM_ITEMS.map((item) => (
-              <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />
-            ))}
+        <div className="lg:hidden overflow-y-auto" style={{ maxHeight: "calc(100vh - 64px)", background: "rgba(10,10,10,0.98)", borderBottom: "1px solid rgba(212,146,10,0.2)" }}>
+          <MobileSection label="플랫폼" expanded={mobileExpanded === "platform"} onToggle={() => setMobileExpanded((p) => (p === "platform" ? null : "platform"))}>
+            {PLATFORM_ITEMS.map((item) => <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />)}
           </MobileSection>
-
-          {/* Solutions */}
-          <MobileSection
-            label="솔루션"
-            expanded={mobileExpanded === "solutions"}
-            onToggle={() => setMobileExpanded((p) => (p === "solutions" ? null : "solutions"))}
-          >
+          <MobileSection label="솔루션" expanded={mobileExpanded === "solutions"} onToggle={() => setMobileExpanded((p) => (p === "solutions" ? null : "solutions"))}>
             <p className="px-4 py-1 text-xs font-semibold uppercase tracking-wider" style={{ color: "#D4920A" }}>산업별</p>
-            {INDUSTRY_ITEMS.map((item) => (
-              <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />
-            ))}
+            {INDUSTRY_ITEMS.map((item) => <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />)}
             <p className="px-4 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider" style={{ color: "#888" }}>직무별</p>
-            {ROLE_ITEMS.map((item) => (
-              <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />
-            ))}
+            {ROLE_ITEMS.map((item) => <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />)}
           </MobileSection>
-
-          {/* Cases */}
-          <Link
-            href="/cases"
-            className="flex items-center px-6 py-4 text-sm border-b"
-            style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.06)" }}
-            onClick={() => setMobileOpen(false)}
-          >
-            고객사례
-          </Link>
-
-          {/* Resources */}
-          <MobileSection
-            label="리소스"
-            expanded={mobileExpanded === "resources"}
-            onToggle={() => setMobileExpanded((p) => (p === "resources" ? null : "resources"))}
-          >
-            {RESOURCE_ITEMS.map((item) => (
-              <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />
-            ))}
+          <Link href="/cases" className="flex items-center px-6 py-4 text-sm border-b" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.06)" }} onClick={() => setMobileOpen(false)}>고객사례</Link>
+          <MobileSection label="리소스" expanded={mobileExpanded === "resources"} onToggle={() => setMobileExpanded((p) => (p === "resources" ? null : "resources"))}>
+            {RESOURCE_ITEMS.map((item) => <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />)}
           </MobileSection>
-
-          {/* Pricing */}
-          <Link
-            href="/pricing"
-            className="flex items-center px-6 py-4 text-sm border-b"
-            style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.06)" }}
-            onClick={() => setMobileOpen(false)}
-          >
-            가격
-          </Link>
-
-          {/* Company */}
-          <MobileSection
-            label="회사"
-            expanded={mobileExpanded === "company"}
-            onToggle={() => setMobileExpanded((p) => (p === "company" ? null : "company"))}
-          >
-            {COMPANY_ITEMS.map((item) => (
-              <MobileItem key={item.href} href={item.href} label={item.label} onClick={() => setMobileOpen(false)} />
-            ))}
-          </MobileSection>
-
-          {/* CTA */}
+          <Link href="/pricing" className="flex items-center px-6 py-4 text-sm border-b" style={{ color: "rgba(255,255,255,0.8)", borderColor: "rgba(255,255,255,0.06)" }} onClick={() => setMobileOpen(false)}>가격</Link>
           <div className="px-6 py-5 flex flex-col gap-3">
-            <Link
-              href="mailto:ceo@4dvision.co.kr"
-              className="py-3 text-sm text-center rounded-xl font-medium"
-              style={{ border: "1px solid rgba(212,146,10,0.4)", color: "#D4920A" }}
-              onClick={() => setMobileOpen(false)}
-            >
-              도입 문의
-            </Link>
-            <Link
-              href="/login"
-              className="py-3 text-sm text-center rounded-xl font-semibold"
-              style={{ background: "#D4920A", color: "#0a0a0a" }}
-              onClick={() => setMobileOpen(false)}
-            >
-              ERP 로그인
-            </Link>
+            <Link href="/demo" className="py-3 text-sm text-center rounded-xl font-semibold" style={{ border: "1px solid rgba(212,146,10,0.4)", color: "#D4920A" }} onClick={() => setMobileOpen(false)}>무료 데모</Link>
+            <Link href="/login" className="py-3 text-sm text-center rounded-xl font-semibold" style={{ background: "#D4920A", color: "#0a0a0a" }} onClick={() => setMobileOpen(false)}>ERP 로그인</Link>
           </div>
         </div>
       )}
@@ -465,39 +313,23 @@ export function MarketingNav() {
 }
 
 /* ─── Mobile helpers ─────────────────────────────────────── */
-function MobileSection({
-  label, expanded, onToggle, children,
-}: { label: string; expanded: boolean; onToggle: () => void; children: React.ReactNode }) {
+function MobileSection({ label, expanded, onToggle, children }: {
+  label: string; expanded: boolean; onToggle: () => void; children: React.ReactNode;
+}) {
   return (
     <div style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between px-6 py-4 text-sm"
-        style={{ color: "rgba(255,255,255,0.8)" }}
-      >
+      <button onClick={onToggle} className="w-full flex items-center justify-between px-6 py-4 text-sm" style={{ color: "rgba(255,255,255,0.8)" }}>
         {label}
-        <ChevronDown
-          className="w-4 h-4 transition-transform"
-          style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", color: "#666" }}
-        />
+        <ChevronDown className="w-4 h-4 transition-transform" style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)", color: "#666" }} />
       </button>
-      {expanded && (
-        <div className="pb-3" style={{ background: "rgba(255,255,255,0.02)" }}>
-          {children}
-        </div>
-      )}
+      {expanded && <div className="pb-3" style={{ background: "rgba(255,255,255,0.02)" }}>{children}</div>}
     </div>
   );
 }
 
 function MobileItem({ href, label, onClick }: { href: string; label: string; onClick: () => void }) {
   return (
-    <Link
-      href={href}
-      className="flex items-center px-8 py-2.5 text-sm"
-      style={{ color: "rgba(255,255,255,0.65)" }}
-      onClick={onClick}
-    >
+    <Link href={href} className="flex items-center px-8 py-2.5 text-sm" style={{ color: "rgba(255,255,255,0.65)" }} onClick={onClick}>
       {label}
     </Link>
   );
