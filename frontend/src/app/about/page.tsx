@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MarketingNav } from "@/components/marketing/MarketingNav";
+import { MarketingFooter } from "@/components/marketing/MarketingFooter";
 import Link from "next/link";
 
 const stats = [
@@ -570,24 +571,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-          padding: "40px 24px",
-          textAlign: "center",
-          color: "rgba(255,255,255,0.35)",
-          fontSize: "13px",
-        }}
-      >
-        <p>© 2025 (주)포디. All rights reserved.</p>
-        <p style={{ marginTop: "8px" }}>
-          서울특별시 강남구 테헤란로 123, FACT AI 타워 &nbsp;|&nbsp;
-          <Link href="/privacy" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>개인정보처리방침</Link>
-          &nbsp;|&nbsp;
-          <Link href="/terms" style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>이용약관</Link>
-        </p>
-      </footer>
+      <MarketingFooter />
     </div>
   );
 }

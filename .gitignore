@@ -49,3 +49,5 @@ redis_data/
 # Misc
 *.pem
 .vercel
+
+.vercel

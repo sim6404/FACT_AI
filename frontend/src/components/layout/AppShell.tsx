@@ -7,7 +7,8 @@ import { TopBar } from "./TopBar";
 import { useAuth } from "@/lib/auth";
 
 const AUTH_ROUTES = ["/login", "/signup"];
-const MARKETING_ROUTES = ["/", "/platform", "/solutions", "/pricing", "/about", "/blog"];
+const MARKETING_ROUTES = ["/", "/platform", "/solutions", "/pricing", "/about", "/blog", "/cases"];
+const MARKETING_PREFIXES = ["/blog", "/industries", "/resources"];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -16,7 +17,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
 
   const isAuthRoute = AUTH_ROUTES.includes(pathname);
-  const isMarketingRoute = MARKETING_ROUTES.includes(pathname) || pathname.startsWith("/blog");
+  const isMarketingRoute = MARKETING_ROUTES.includes(pathname) || MARKETING_PREFIXES.some(p => pathname.startsWith(p));
 
   useEffect(() => {
     if (!loading && !user && !isAuthRoute && !isMarketingRoute) {

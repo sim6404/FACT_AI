@@ -144,7 +144,7 @@ function HeroSection() {
               className="w-1.5 h-1.5 rounded-full animate-pulse"
               style={{ background: AMBER }}
             />
-            Snowflake Cortex AI 기반 제조 자동화 플랫폼
+            F.A.C.T AI 기반 기업 업무 자동화 플랫폼
           </span>
         </div>
 
@@ -170,8 +170,7 @@ function HeroSection() {
             color: TEXT_SECONDARY,
           }}
         >
-          F.A.C.T AI는 Snowflake Cortex 기반 AI 에이전트가 생산·품질·영업
-          데이터를 실시간 분석하여
+          F.A.C.T AI 에이전트가 생산·품질·영업·구매 데이터를 실시간 분석하여
           <br className="hidden md:block" />
           현장 담당자의 의사결정을 자동화합니다.
         </p>
@@ -278,7 +277,7 @@ function WhyFactSection() {
     {
       icon: <Cpu className="w-6 h-6" style={{ color: AMBER }} />,
       title: "AI 에이전트 자동화",
-      desc: "자연어 질의 한 번으로 생산·품질·영업 리포트를 즉시 생성합니다. Snowflake Cortex Agents가 복잡한 다단계 분석을 자동으로 수행합니다.",
+      desc: "자연어 질의 한 번으로 생산·품질·영업 리포트를 즉시 생성합니다. F.A.C.T AI 에이전트가 복잡한 다단계 분석을 자동으로 수행합니다.",
       points: [
         "한국어 자연어 질의 지원",
         "멀티 에이전트 오케스트레이션",
@@ -292,7 +291,7 @@ function WhyFactSection() {
       points: [
         "PPM·불량률 실시간 모니터링",
         "임계값 초과 즉시 알림",
-        "Snowflake Cortex Analyst 연동",
+        "AI Cortex Analyst 연동",
       ],
     },
     {
@@ -400,7 +399,7 @@ function PlatformSection() {
         "생산 계획 대비 실적 자동 분석",
         "이상 징후 예측 알림 (AI 기반)",
         "작업 지시 자동 생성 및 배포",
-        "Snowflake 기반 이력 데이터 분석",
+        "AI 기반 이력 데이터 분석",
         "주간·월간 생산 리포트 자동 생성",
       ],
       accent: "#3b82f6",
@@ -656,8 +655,8 @@ function FeaturesSection() {
   const features = [
     {
       icon: <Cpu className="w-5 h-5" style={{ color: AMBER }} />,
-      title: "Snowflake Cortex 연동",
-      desc: "엔터프라이즈급 Snowflake Data Cloud와 네이티브 연동. Cortex Analyst, Cortex Search, Cortex Agents를 동시에 활용합니다.",
+      title: "엔터프라이즈 AI 클라우드",
+      desc: "엔터프라이즈급 AI 데이터 클라우드와 네이티브 연동. Cortex Analyst, Cortex Search, Cortex Agents를 동시에 활용합니다.",
     },
     {
       icon: <Globe className="w-5 h-5" style={{ color: AMBER }} />,
@@ -822,7 +821,7 @@ function TestimonialsSection() {
     },
     {
       quote:
-        "Snowflake 기반이라 기존 데이터 인프라와 연동이 빨랐습니다. 영업 데이터와 생산 데이터를 동시에 보며 의사결정하는 게 이제 일상이 됐어요.",
+        "F.A.C.T AI 덕분에 기존 데이터 인프라와 연동이 빨랐습니다. 영업 데이터와 생산 데이터를 동시에 보며 의사결정하는 게 이제 일상이 됐어요.",
       name: "박서연",
       title: "디지털전환 담당 이사",
       company: "LG이노텍",
@@ -918,8 +917,8 @@ function PricingSection() {
   const plans = [
     {
       name: "스타터",
-      price: "월 150만원",
-      sub: "연간 결제 시 20% 할인",
+      price: "비용 문의",
+      sub: "기업 규모별 맞춤 산정",
       highlight: false,
       desc: "중소기업을 위한 핵심 AI 자동화 패키지",
       features: [
@@ -933,8 +932,8 @@ function PricingSection() {
     },
     {
       name: "프로",
-      price: "월 390만원",
-      sub: "연간 결제 시 20% 할인",
+      price: "비용 문의",
+      sub: "기업 규모별 맞춤 산정",
       highlight: true,
       desc: "성장하는 중견기업을 위한 전사 자동화",
       features: [
@@ -958,7 +957,7 @@ function PricingSection() {
         "사용자 무제한",
         "온프레미스·프라이빗 클라우드 배포",
         "SSO·LDAP 연동",
-        "전용 Snowflake 환경 구성",
+        "전용 AI 클라우드 환경 구성",
         "전담 엔지니어 배정",
         "SLA 99.9% 보장",
         "전사 커스터마이징",
@@ -983,7 +982,10 @@ function PricingSection() {
             투명한 가격 정책
           </h2>
           <p style={{ color: TEXT_SECONDARY, fontSize: "1.05rem" }}>
-            숨겨진 비용 없이, 규모에 맞는 플랜을 선택하세요.
+            기업별 커스터마이징 비용 문의 —{" "}
+            <a href="mailto:ceo@4dvision.co.kr" style={{ color: AMBER, textDecoration: "none" }}>
+              ceo@4dvision.co.kr
+            </a>
           </p>
         </div>
 
@@ -1045,8 +1047,8 @@ function PricingSection() {
                 ))}
               </ul>
 
-              <Link
-                href={plan.name === "엔터프라이즈" ? "/contact" : "/start"}
+              <a
+                href="mailto:ceo@4dvision.co.kr"
                 className="w-full py-3 rounded-xl text-sm font-semibold text-center transition-all"
                 style={
                   plan.highlight
@@ -1074,14 +1076,14 @@ function PricingSection() {
                   }
                 }}
               >
-                {plan.name === "엔터프라이즈" ? "도입 문의" : "무료로 시작하기"}
-              </Link>
+                도입 문의하기
+              </a>
             </div>
           ))}
         </div>
 
         <p className="text-center text-xs mt-8" style={{ color: TEXT_MUTED }}>
-          모든 플랜은 14일 무료 체험 가능 · 신용카드 불필요 · 언제든 해지 가능
+          문의 후 48시간 내 전문 담당자가 연락드립니다 · TEL. 031-901-4823
         </p>
       </div>
     </section>
@@ -1223,22 +1225,23 @@ function Footer() {
               className="text-sm leading-relaxed mb-5"
               style={{ color: TEXT_MUTED }}
             >
-              AI 기반 제조 업무 자동화
+              AI 기반 기업 업무 자동화 플랫폼.
               <br />
-              플랫폼. Snowflake Cortex로
-              <br />
-              구동되는 차세대 ERP.
+              (주)포디비전이 만든 차세대 ERP.
             </p>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
+              <a href="mailto:ceo@4dvision.co.kr" className="text-xs transition-colors" style={{ color: AMBER }}>
+                ceo@4dvision.co.kr
+              </a>
               <span className="text-xs" style={{ color: TEXT_MUTED }}>
-                contact@factai.kr
+                TEL. 031-901-4823
               </span>
               <span className="text-xs" style={{ color: TEXT_MUTED }}>
-                02-1234-5678
+                경기도 고양시 일산동 고봉로 32-19
               </span>
-              <span className="text-xs" style={{ color: TEXT_MUTED }}>
-                서울시 강남구 테헤란로 123
-              </span>
+              <a href="https://www.4dvision.co.kr" target="_blank" rel="noopener noreferrer" className="text-xs transition-colors" style={{ color: TEXT_MUTED }}>
+                www.4dvision.co.kr
+              </a>
             </div>
           </div>
 
@@ -1278,8 +1281,7 @@ function Footer() {
         <div style={{ borderTop: `1px solid ${BORDER}` }} className="pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: TEXT_MUTED }}>
-              © 2025 F.A.C.T AI Inc. (주식회사 포디에이아이). 모든 권리
-              보유.
+              © 2007–2026 (주)포디비전 · F.A.C.T AI. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
               {[
@@ -1332,7 +1334,7 @@ function Footer() {
                   border: "1px solid rgba(16,185,129,0.2)",
                 }}
               >
-                Snowflake Partner
+                4D VISION
               </span>
             </div>
           </div>
