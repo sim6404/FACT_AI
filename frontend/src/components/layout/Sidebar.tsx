@@ -11,6 +11,7 @@ import {
   ChevronDown, ChevronUp, Truck, Boxes,
 } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/lib/auth";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "메인 대시보드", icon: LayoutDashboard },
@@ -48,6 +49,8 @@ interface SidebarProps {
 export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = usePathname();
   const [erpOpen, setErpOpen] = useState(true);
+  const { user } = useAuth();
+  const isAdmin = user?.role === "admin";
 
   return (
     <aside
@@ -220,8 +223,8 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           );
         })}
 
-        {/* ── 관리자 ── */}
-        {!collapsed && (
+        {/* ── 관리자 (admin 역할만 표시) ── */}
+        {isAdmin && !collapsed && (
           <>
             <div className="pt-3 pb-1 px-3">
               <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#555" }}>관리자</span>

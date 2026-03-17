@@ -1131,11 +1131,11 @@ function CtaSection() {
           신용카드 없이 5분 안에 시작할 수 있습니다.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <AmberButton href="/start" large>
+          <AmberButton href="/demo" large>
             무료 데모 신청하기 <ArrowRight className="w-5 h-5" />
           </AmberButton>
-          <GhostButton href="/contact" large>
-            영업팀 상담 요청 <ChevronRight className="w-5 h-5" />
+          <GhostButton href="/cases" large>
+            고객사례 보기 <ChevronRight className="w-5 h-5" />
           </GhostButton>
         </div>
         <p className="text-xs mt-6" style={{ color: TEXT_MUTED }}>

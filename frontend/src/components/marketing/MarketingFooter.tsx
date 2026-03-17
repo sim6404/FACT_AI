@@ -3,11 +3,11 @@ import Link from "next/link";
 
 const FOOTER_LINKS = {
   플랫폼: [
-    { label: "AI 에이전트 플랫폼", href: "/platform#agent" },
-    { label: "데이터 분석 엔진", href: "/platform#analytics" },
-    { label: "자동화 워크플로우", href: "/platform#automation" },
-    { label: "보안·거버넌스", href: "/platform#security" },
-    { label: "통합·연동", href: "/platform#integration" },
+    { label: "AI 에이전트 플랫폼", href: "/platform/agent" },
+    { label: "데이터 분석 엔진", href: "/platform/analytics" },
+    { label: "자동화 워크플로우", href: "/platform/automation" },
+    { label: "보안·거버넌스", href: "/platform/security" },
+    { label: "통합·연동", href: "/platform/integration" },
   ],
   솔루션: [
     { label: "광고·미디어", href: "/industries/media" },
@@ -25,12 +25,11 @@ const FOOTER_LINKS = {
     { label: "웨비나·이벤트", href: "/resources/events" },
     { label: "파트너 생태계", href: "/resources/partners" },
   ],
-  회사: [
-    { label: "회사소개", href: "/about" },
-    { label: "뉴스룸", href: "/about#news" },
-    { label: "파트너십", href: "/about#partner" },
-    { label: "채용", href: "/about#careers" },
-    { label: "가격", href: "/pricing" },
+  서비스: [
+    { label: "고객사례", href: "/cases" },
+    { label: "무료 데모 신청", href: "/demo" },
+    { label: "가격 문의", href: "/pricing" },
+    { label: "파트너십 문의", href: "/resources/partners" },
   ],
 };
 

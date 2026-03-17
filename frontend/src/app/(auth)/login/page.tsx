@@ -137,22 +137,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* 데모 계정 안내 */}
-          <div
-            className="mt-5 p-3 rounded-lg"
-            style={{ background: "#252525", border: "1px solid #333" }}
-          >
-            <p className="text-xs font-medium mb-1.5" style={{ color: "#D4920A" }}>
-              데모 계정
-            </p>
-            <p className="text-[11px]" style={{ color: "#888" }}>
-              관리자: admin@youngdongtech.com / admin1234
-            </p>
-            <p className="text-[11px] mt-0.5" style={{ color: "#888" }}>
-              일반부서: prod@youngdongtech.com / dept1234
-            </p>
-          </div>
-
           <div className="mt-5 text-center text-xs" style={{ color: "#666" }}>
             계정이 없으신가요?{" "}
             <Link
