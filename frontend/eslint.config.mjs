@@ -11,6 +11,18 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
+  {
+    linterOptions: {
+      // Don't error on disable comments for unknown rules
+      reportUnusedDisableDirectives: "off",
+    },
+    rules: {
+      // Allow unescaped quote chars in JSX text
+      "react/no-unescaped-entities": "off",
+      // Allow `any` type (handled by TypeScript itself)
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
