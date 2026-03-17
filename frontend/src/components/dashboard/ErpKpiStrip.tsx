@@ -72,7 +72,8 @@ export function ErpKpiStrip() {
       }
 
       if (quality.status === "fulfilled") {
-        const rows = quality.value.items ?? quality.value;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rows: any[] = Array.isArray(quality.value) ? quality.value : (quality.value as any).items;
         const avg = rows.length > 0
           ? rows.reduce((s: number, r: { ppm: number }) => s + (r.ppm ?? 0), 0) / rows.length
           : 0;
@@ -81,7 +82,8 @@ export function ErpKpiStrip() {
       }
 
       if (production.status === "fulfilled") {
-        const rows = production.value.items ?? production.value;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rows: any[] = Array.isArray(production.value) ? production.value : (production.value as any).items;
         const avgOee = rows.length > 0
           ? rows.reduce((s: number, r: { oee: number }) => s + (r.oee ?? 0), 0) / rows.length
           : 0;
@@ -92,7 +94,8 @@ export function ErpKpiStrip() {
       }
 
       if (sales.status === "fulfilled") {
-        const rows = sales.value.items ?? sales.value;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rows: any[] = Array.isArray(sales.value) ? sales.value : (sales.value as any).items;
         const totalTarget = rows.reduce((s: number, r: { sales_target: number }) => s + (r.sales_target ?? 0), 0);
         const totalActual = rows.reduce((s: number, r: { actual_sales: number }) => s + (r.actual_sales ?? 0), 0);
         d.salesAch = totalTarget > 0 ? (totalActual / totalTarget * 100).toFixed(1) + "%" : "-";

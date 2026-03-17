@@ -197,8 +197,8 @@ export default function SalesPage() {
         salesApi.getPerformance(yearMonth),
         salesApi.getHkmcProgress(),
       ]);
-      setSalesRows(s.items ?? s);
-      setHkmcRows(h.items ?? h);
+      setSalesRows(Array.isArray(s) ? s : (s as { items: SalesPerformanceRow[] }).items);
+      setHkmcRows(Array.isArray(h) ? h : (h as { items: SalesPerformanceRow[] }).items);
     } catch (e) {
       console.error(e);
     } finally {
