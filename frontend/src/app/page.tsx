@@ -540,7 +540,7 @@ function PlatformSection() {
               ))}
             </ul>
             <div className="mt-8">
-              <AmberButton href={`/${tabs[activeTab].label === "생산관리" ? "production" : tabs[activeTab].label === "품질관리" ? "quality" : tabs[activeTab].label === "영업관리" ? "sales" : "purchase"}`}>
+              <AmberButton href={`/erp/${tabs[activeTab].label === "생산관리" ? "production" : tabs[activeTab].label === "품질관리" ? "quality" : tabs[activeTab].label === "영업관리" ? "sales" : "purchase"}`}>
                 자세히 보기 <ArrowRight className="w-4 h-4" />
               </AmberButton>
             </div>
@@ -1153,43 +1153,40 @@ function Footer() {
     {
       heading: "플랫폼",
       links: [
-        { label: "생산관리 모듈", href: "/platform/production" },
-        { label: "품질관리 모듈", href: "/platform/quality" },
-        { label: "영업관리 모듈", href: "/platform/sales" },
-        { label: "구매자재 모듈", href: "/platform/purchase" },
-        { label: "AI 에이전트", href: "/platform/agent" },
-        { label: "보고서 센터", href: "/platform/reports" },
+        { label: "AI 에이전트 플랫폼", href: "/platform/agent" },
+        { label: "데이터 분석 엔진", href: "/platform/analytics" },
+        { label: "자동화 워크플로우", href: "/platform/automation" },
+        { label: "보안·거버넌스", href: "/platform/security" },
+        { label: "통합·연동", href: "/platform/integration" },
       ],
     },
     {
       heading: "솔루션",
       links: [
-        { label: "자동차 부품", href: "/solutions/auto-parts" },
-        { label: "전자·반도체", href: "/solutions/electronics" },
-        { label: "화학·소재", href: "/solutions/chemical" },
-        { label: "중견기업 패키지", href: "/solutions/mid-market" },
-        { label: "대기업 엔터프라이즈", href: "/solutions/enterprise" },
+        { label: "제조", href: "/industries/manufacturing" },
+        { label: "금융서비스", href: "/industries/financial" },
+        { label: "의료·헬스케어", href: "/industries/healthcare" },
+        { label: "리테일·이커머스", href: "/industries/retail" },
+        { label: "전 산업 보기", href: "/solutions" },
       ],
     },
     {
       heading: "리소스",
       links: [
         { label: "고객 사례", href: "/cases" },
-        { label: "기술 블로그", href: "/blog" },
-        { label: "API 문서", href: "/docs/api" },
-        { label: "도입 가이드", href: "/docs/guide" },
-        { label: "자주 묻는 질문", href: "/faq" },
-        { label: "보안 센터", href: "/security" },
+        { label: "기술 블로그", href: "/resources/blog" },
+        { label: "API 문서", href: "/resources/docs" },
+        { label: "웨비나·이벤트", href: "/resources/events" },
+        { label: "파트너 생태계", href: "/resources/partners" },
       ],
     },
     {
-      heading: "회사",
+      heading: "서비스",
       links: [
         { label: "회사 소개", href: "/about" },
-        { label: "채용 공고", href: "/careers" },
-        { label: "파트너 프로그램", href: "/partners" },
-        { label: "뉴스룸", href: "/news" },
-        { label: "문의하기", href: "/contact" },
+        { label: "무료 데모 신청", href: "/demo" },
+        { label: "가격 문의", href: "/pricing" },
+        { label: "문의하기", href: "/demo" },
       ],
     },
   ];

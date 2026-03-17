@@ -60,36 +60,26 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       )}
       style={{ background: "#171717", borderColor: "#2e2e2e" }}
     >
-      {/* ── 로고 (영동테크 YD 스타일) ── */}
+      {/* ── 로고 (F.A.C.T.) ── */}
       <div
         className="flex items-center gap-3 px-4 py-4 border-b min-h-[64px]"
         style={{ borderColor: "#2e2e2e" }}
       >
-        {/* YD 로고 블록 */}
-        <div className="relative flex-shrink-0 w-9 h-9">
-          <div className="absolute inset-0 rounded-lg" style={{ background: "#1a1a1a", border: "1px solid #383838" }} />
-          <div
-            className="absolute"
-            style={{
-              top: "5px", left: "5px", right: "5px", bottom: "5px",
-              background: "linear-gradient(135deg, #D4920A 0%, #f59e0b 100%)",
-              clipPath: "polygon(0 0, 100% 0, 100% 30%, 30% 100%, 0 100%)",
-              borderRadius: "2px",
-            }}
-          />
-          <div
-            className="absolute inset-0 flex items-center justify-center font-black text-white"
-            style={{ fontSize: "11px", letterSpacing: "-0.5px", textShadow: "0 1px 3px rgba(0,0,0,0.9)" }}
-          >
-            YD
-          </div>
+        {/* F 로고 블록 */}
+        <div
+          className="flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center font-black"
+          style={{ background: "linear-gradient(135deg, #D4920A, #f59e0b)", color: "#0a0a0a", fontSize: "16px" }}
+        >
+          F
         </div>
 
         {!collapsed && (
           <div>
-            <div className="text-sm font-bold text-white tracking-wide leading-tight">영동테크</div>
-            <div className="text-[10px] mt-0.5 font-semibold tracking-wide" style={{ color: "#D4920A" }}>
-              ERP · AI Platform
+            <div className="text-sm font-bold text-white tracking-wide leading-tight">
+              F.A.C.T. <span style={{ color: "#D4920A", fontSize: "10px" }}>ERP</span>
+            </div>
+            <div className="text-[10px] mt-0.5 font-semibold tracking-wide" style={{ color: "#555" }}>
+              AI 통합 플랫폼
             </div>
           </div>
         )}

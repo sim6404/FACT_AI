@@ -35,7 +35,7 @@ export function TopBar({ onMenuToggle }: TopBarProps) {
       {/* 브레드크럼 / 회사명 */}
       <div className="hidden md:flex items-center gap-2 text-xs" style={{ color: "#666" }}>
         <Building2 className="w-3.5 h-3.5" style={{ color: "#D4920A" }} />
-        <span style={{ color: "#D4920A", fontWeight: 600 }}>(주)영동테크</span>
+        <span style={{ color: "#D4920A", fontWeight: 600 }}>F.A.C.T.</span>
         <span>/</span>
         <span>ERP 플랫폼</span>
       </div>

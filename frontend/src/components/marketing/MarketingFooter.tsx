@@ -73,9 +73,9 @@ export function MarketingFooter() {
               <a href="tel:031-901-4823" style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
                 TEL. 031-901-4823
               </a>
-              <a href="tel:031-629-6029" style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
-                TEL. 031-629-6029
-              </a>
+              <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+                FAX. 031-629-6029
+              </span>
               <a href="https://www.4dvision.co.kr" target="_blank" rel="noopener noreferrer" style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
                 www.4dvision.co.kr
               </a>

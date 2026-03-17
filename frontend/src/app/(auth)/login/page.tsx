@@ -48,8 +48,8 @@ export default function LoginPage() {
           >
             <Building2 className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">(주)영동테크</h1>
-          <p className="text-sm mt-1" style={{ color: "#888" }}>F.A.C.T ERP 플랫폼</p>
+          <h1 className="text-2xl font-bold text-white">F.A.C.T. <span style={{ color: "#D4920A" }}>ERP</span></h1>
+          <p className="text-sm mt-1" style={{ color: "#888" }}>AI 통합 플랫폼 로그인</p>
         </div>
 
         {/* 카드 */}
@@ -67,7 +67,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 required
-                placeholder="email@youngdongtech.com"
+                placeholder="이메일 주소 입력"
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none transition-colors"
                 style={{ background: "#252525", border: "1px solid #383838" }}
                 value={form.email}

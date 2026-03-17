@@ -3,17 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useAuth, UserRole } from "@/lib/auth";
-import { Eye, EyeOff, Building2, UserPlus, Shield, Users } from "lucide-react";
+import { useAuth } from "@/lib/auth";
+import { Eye, EyeOff, Building2, UserPlus } from "lucide-react";
 
 const DEPARTMENTS = [
   "경영지원팀", "생산팀", "품질팀", "영업팀",
   "구매팀", "물류팀", "IT팀", "재무팀",
-];
-
-const ROLES: { value: UserRole; label: string; desc: string; icon: React.ElementType }[] = [
-  { value: "admin", label: "관리자", desc: "시스템 전체 권한", icon: Shield },
-  { value: "dept", label: "일반부서", desc: "부서 업무 접근", icon: Users },
 ];
 
 export default function SignupPage() {
@@ -24,7 +19,6 @@ export default function SignupPage() {
     email: "",
     password: "",
     passwordConfirm: "",
-    role: "dept" as UserRole,
     department: "경영지원팀",
   });
   const [showPw, setShowPw] = useState(false);
@@ -47,7 +41,7 @@ export default function SignupPage() {
       name: form.name,
       email: form.email,
       password: form.password,
-      role: form.role,
+      role: "dept",
       department: form.department,
     });
     setLoading(false);
@@ -87,8 +81,8 @@ export default function SignupPage() {
           >
             <Building2 className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">(주)영동테크</h1>
-          <p className="text-sm mt-1" style={{ color: "#888" }}>F.A.C.T ERP 플랫폼</p>
+          <h1 className="text-2xl font-bold text-white">F.A.C.T. <span style={{ color: "#D4920A" }}>ERP</span></h1>
+          <p className="text-sm mt-1" style={{ color: "#888" }}>AI 통합 플랫폼 회원가입</p>
         </div>
 
         {/* 카드 */}
@@ -97,35 +91,6 @@ export default function SignupPage() {
           style={{ background: "#1a1a1a", border: "1px solid #2e2e2e" }}
         >
           <h2 className="text-lg font-semibold text-white mb-5">회원가입</h2>
-
-          {/* 계정 유형 선택 */}
-          <div className="grid grid-cols-2 gap-2 mb-5">
-            {ROLES.map(r => {
-              const active = form.role === r.value;
-              return (
-                <button
-                  key={r.value}
-                  type="button"
-                  onClick={() => setForm(p => ({ ...p, role: r.value }))}
-                  className="flex flex-col items-center gap-1.5 py-3.5 rounded-xl text-xs font-medium transition-all"
-                  style={{
-                    background: active ? "rgba(212,146,10,0.1)" : "#252525",
-                    border: active ? "1px solid rgba(212,146,10,0.5)" : "1px solid #383838",
-                    color: active ? "#D4920A" : "#888",
-                  }}
-                >
-                  <r.icon className="w-5 h-5" />
-                  <span className="font-semibold">{r.label}</span>
-                  <span
-                    className="text-[10px]"
-                    style={{ color: active ? "#b07520" : "#555" }}
-                  >
-                    {r.desc}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
 
           <form onSubmit={handleSubmit} className="space-y-3.5">
             {/* 이름 */}
@@ -149,7 +114,7 @@ export default function SignupPage() {
               <input
                 type="email"
                 required
-                placeholder="email@youngdongtech.com"
+                placeholder="이메일 주소 입력"
                 className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none"
                 style={inputStyle}
                 value={form.email}
