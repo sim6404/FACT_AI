@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
-  Menu, X, ChevronDown,
+  Menu, X, ChevronDown, Map,
   Cpu, BarChart3, Zap, Shield, Plug,
   Megaphone, Landmark, Heart, ShoppingCart, Factory, Building2, Bolt, Radio,
   Code2, Database, LineChart, Briefcase,
@@ -45,7 +45,70 @@ const RESOURCE_ITEMS = [
 ];
 
 /* ─── Types ─────────────────────────────────────────────── */
-type MenuKey = "platform" | "solutions" | "resources" | null;
+type MenuKey = "platform" | "solutions" | "resources" | "sitemap" | null;
+
+const SITEMAP_SECTIONS = [
+  {
+    title: "플랫폼",
+    links: [
+      { label: "AI 에이전트 플랫폼", href: "/platform/agent" },
+      { label: "데이터 분석 엔진", href: "/platform/analytics" },
+      { label: "자동화 워크플로우", href: "/platform/automation" },
+      { label: "보안·거버넌스", href: "/platform/security" },
+      { label: "통합·연동", href: "/platform/integration" },
+    ],
+  },
+  {
+    title: "솔루션",
+    links: [
+      { label: "제조", href: "/industries/manufacturing" },
+      { label: "금융서비스", href: "/industries/financial" },
+      { label: "의료·헬스케어", href: "/industries/healthcare" },
+      { label: "리테일·이커머스", href: "/industries/retail" },
+      { label: "공공·정부", href: "/industries/government" },
+      { label: "에너지·유틸리티", href: "/industries/energy" },
+      { label: "광고·미디어", href: "/industries/media" },
+      { label: "통신", href: "/industries/telecom" },
+    ],
+  },
+  {
+    title: "직무별",
+    links: [
+      { label: "데이터 엔지니어", href: "/solutions/engineer" },
+      { label: "데이터 분석가", href: "/solutions/analyst" },
+      { label: "개발자", href: "/solutions/developer" },
+      { label: "경영진", href: "/solutions/executive" },
+    ],
+  },
+  {
+    title: "리소스",
+    links: [
+      { label: "문서·가이드", href: "/resources/docs" },
+      { label: "블로그", href: "/resources/blog" },
+      { label: "웨비나·이벤트", href: "/resources/events" },
+      { label: "파트너 생태계", href: "/resources/partners" },
+    ],
+  },
+  {
+    title: "서비스",
+    links: [
+      { label: "고객사례", href: "/cases" },
+      { label: "가격 안내", href: "/pricing" },
+      { label: "무료 데모 신청", href: "/demo" },
+      { label: "도입 문의", href: "/contact" },
+      { label: "파트너십 신청", href: "/contact" },
+      { label: "회사 소개", href: "/about" },
+    ],
+  },
+  {
+    title: "법적 고지",
+    links: [
+      { label: "개인정보처리방침", href: "/privacy" },
+      { label: "서비스 이용약관", href: "/terms" },
+      { label: "쿠키 설정", href: "/cookies" },
+    ],
+  },
+];
 
 /* ─── MegaMenuPanel ─────────────────────────────────────── */
 function MegaMenuPanel({ children }: { children: React.ReactNode }) {
@@ -254,6 +317,60 @@ export function MarketingNav() {
 
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-3 z-10">
+          {/* 사이트맵 버튼 */}
+          <button
+            onClick={() => toggle("sitemap")}
+            className="flex items-center gap-1 px-3 py-2 text-sm rounded-lg transition-colors"
+            style={{ color: activeMenu === "sitemap" ? "#D4920A" : "rgba(255,255,255,0.5)" }}
+            onMouseEnter={(e) => { if (activeMenu !== "sitemap") e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { if (activeMenu !== "sitemap") e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
+            title="사이트맵"
+          >
+            <Map className="w-4 h-4" />
+            <span style={{ fontSize: "12px", fontWeight: 600 }}>사이트맵</span>
+          </button>
+
+          {/* 사이트맵 드롭다운 */}
+          {activeMenu === "sitemap" && (
+            <div
+              className="absolute right-6 top-full mt-0 w-[700px]"
+              style={{
+                background: "rgba(12,12,12,0.98)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(212,146,10,0.18)",
+                borderTop: "2px solid #D4920A",
+                borderRadius: "0 0 16px 16px",
+                boxShadow: "0 32px 64px rgba(0,0,0,0.7)",
+                padding: "24px",
+                zIndex: 100,
+              }}
+            >
+              <p className="text-xs font-semibold mb-4 tracking-widest uppercase" style={{ color: "#D4920A" }}>전체 사이트맵</p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+                {SITEMAP_SECTIONS.map((sec) => (
+                  <div key={sec.title}>
+                    <p style={{ fontSize: "11px", fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "10px" }}>{sec.title}</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                      {sec.links.map((l) => (
+                        <Link
+                          key={l.href + l.label}
+                          href={l.href}
+                          onClick={() => setActiveMenu(null)}
+                          style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", textDecoration: "none", padding: "3px 0", borderBottom: "none" }}
+                          onMouseEnter={(e) => { e.currentTarget.style.color = "#D4920A"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
+                        >
+                          {l.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <Link
             href="/demo"
             className="flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg font-semibold transition-all"

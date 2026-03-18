@@ -121,7 +121,7 @@ export default function AboutPage() {
             <span>📍</span>
             경기도 고양시 일산동구 고봉로 32-19 남중시티프라자 7동 504호
             <span style={{ width: "1px", height: "14px", background: BORDER }} />
-            <span>☎ 031-901-4823</span>
+            <span>☎ 031-901-4823 / 010-9039-0329</span>
           </div>
         </div>
       </section>
@@ -309,7 +309,7 @@ export default function AboutPage() {
         <div style={{ marginTop: "28px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
           {[
             { icon: "📍", label: "주소", value: "경기도 고양시 일산동구 고봉로 32-19\n남중시티프라자 7동 504호" },
-            { icon: "📞", label: "연락처", value: "TEL. 031-901-4823\nFAX. 031-629-6029\nceo@4dvision.co.kr" },
+            { icon: "📞", label: "연락처", value: "TEL. 031-901-4823\nMOB. 010-9039-0329\nFAX. 031-629-6029\nceo@4dvision.co.kr" },
           ].map((o) => (
             <div key={o.label} style={{ background: CARD, border: `1px solid ${BORDER}`, borderRadius: "16px", padding: "22px 24px", display: "flex", gap: "14px" }}>
               <span style={{ fontSize: "22px", flexShrink: 0 }}>{o.icon}</span>

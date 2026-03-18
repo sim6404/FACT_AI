@@ -27,9 +27,15 @@ export default function PartnersPage() {
               </div>
             ))}
           </div>
-          <a href="mailto:ceo@4dvision.co.kr" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#D4920A", color: "#0a0a0a", padding: "14px 32px", borderRadius: "12px", fontWeight: 800, fontSize: "15px", textDecoration: "none" }}>
-            파트너십 신청
+          <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#D4920A", color: "#0a0a0a", padding: "14px 32px", borderRadius: "12px", fontWeight: 800, fontSize: "15px", textDecoration: "none" }}>
+            파트너십 신청하기 →
           </a>
+          <a href="mailto:ceo@4dvision.co.kr" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", color: "#fff", padding: "14px 28px", borderRadius: "12px", fontWeight: 600, fontSize: "15px", textDecoration: "none", marginTop: "12px" }}>
+            📧 ceo@4dvision.co.kr
+          </a>
+          <div style={{ marginTop: "12px", fontSize: "14px", color: "rgba(255,255,255,0.45)" }}>
+            📞 031-901-4823 &nbsp;|&nbsp; 📱 010-9039-0329
+          </div>
         </div>
       </section>
       <MarketingFooter />

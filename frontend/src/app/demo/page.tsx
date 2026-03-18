@@ -66,7 +66,8 @@ export default function DemoPage() {
               <div style={{ fontSize: "13px", fontWeight: 700, color: "#D4920A", marginBottom: "12px" }}>즉시 문의</div>
               <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)", marginBottom: "6px" }}>📧 ceo@4dvision.co.kr</div>
               <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)", marginBottom: "6px" }}>📞 031-901-4823</div>
-              <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>📞 031-629-6029</div>
+              <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)", marginBottom: "6px" }}>📱 010-9039-0329</div>
+              <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>📠 FAX. 031-629-6029</div>
             </div>
           </div>
 

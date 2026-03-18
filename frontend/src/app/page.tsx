@@ -1083,7 +1083,7 @@ function PricingSection() {
         </div>
 
         <p className="text-center text-xs mt-8" style={{ color: TEXT_MUTED }}>
-          문의 후 48시간 내 전문 담당자가 연락드립니다 · TEL. 031-901-4823
+          문의 후 48시간 내 전문 담당자가 연락드립니다 · TEL. 031-901-4823 · MOB. 010-9039-0329
         </p>
       </div>
     </section>
@@ -1230,9 +1230,12 @@ function Footer() {
               <a href="mailto:ceo@4dvision.co.kr" className="text-xs transition-colors" style={{ color: AMBER }}>
                 ceo@4dvision.co.kr
               </a>
-              <span className="text-xs" style={{ color: TEXT_MUTED }}>
+              <a href="tel:031-901-4823" className="text-xs" style={{ color: TEXT_MUTED, textDecoration: "none" }}>
                 TEL. 031-901-4823
-              </span>
+              </a>
+              <a href="tel:010-9039-0329" className="text-xs" style={{ color: TEXT_MUTED, textDecoration: "none" }}>
+                MOB. 010-9039-0329
+              </a>
               <span className="text-xs" style={{ color: TEXT_MUTED }}>
                 경기도 고양시 일산동 고봉로 32-19
               </span>

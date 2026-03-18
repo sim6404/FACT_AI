@@ -17,6 +17,7 @@ const companySizes = ["50명 미만", "50~200명", "200~500명", "500~2,000명",
 const contactInfo = [
   { icon: "📧", label: "이메일", value: "ceo@4dvision.co.kr", link: "mailto:ceo@4dvision.co.kr" },
   { icon: "📞", label: "전화", value: "031-901-4823", link: "tel:031-901-4823" },
+  { icon: "📱", label: "휴대폰", value: "010-9039-0329", link: "tel:010-9039-0329" },
   { icon: "📠", label: "팩스", value: "031-629-6029", link: null },
   { icon: "📍", label: "주소", value: "경기도 고양시 일산동 고봉로 32-19\n남정씨티프라자 7차 504호", link: null },
 ];

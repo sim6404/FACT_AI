@@ -74,6 +74,9 @@ export function MarketingFooter() {
               <a href="tel:031-901-4823" style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
                 TEL. 031-901-4823
               </a>
+              <a href="tel:010-9039-0329" style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>
+                MOB. 010-9039-0329
+              </a>
               <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
                 FAX. 031-629-6029
               </span>
@@ -107,38 +110,52 @@ export function MarketingFooter() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "24px" }}>
-          {/* Company info */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div>
-              <div style={{ fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: "6px" }}>
-                (주)포디비전 · WORLD WIDE 4D SOLUTION
-              </div>
-              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.28)", lineHeight: 1.8 }}>
-                경기도 고양시 일산동 고봉로 32-19 남정씨티프라자 7차 504호
-              </div>
-              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.28)", marginTop: "4px" }}>
-                COPYRIGHT 2007–2026 4D VISION ALL RIGHTS RESERVED
-              </div>
-            </div>
-            <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap" }}>
-              {[
-                { label: "개인정보처리방침", href: "/privacy" },
-                { label: "이용약관", href: "/terms" },
-                { label: "쿠키 설정", href: "/cookies" },
-              ].map((l) => (
+        {/* Legal Links Row — 눈에 잘 띄게 */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "24px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+            <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)", marginRight: "4px" }}>법적 고지</span>
+            {[
+              { label: "개인정보처리방침", href: "/privacy" },
+              { label: "서비스 이용약관", href: "/terms" },
+              { label: "쿠키 설정", href: "/cookies" },
+            ].map((l, i) => (
+              <span key={l.href} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                {i > 0 && <span style={{ color: "rgba(255,255,255,0.15)", fontSize: "11px" }}>|</span>}
                 <Link
-                  key={l.href}
                   href={l.href}
-                  style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.3)")}
+                  style={{ fontSize: "13px", color: "rgba(255,255,255,0.55)", textDecoration: "none", fontWeight: 500 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#D4920A"; e.currentTarget.style.textDecoration = "underline"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.55)"; e.currentTarget.style.textDecoration = "none"; }}
                 >
                   {l.label}
                 </Link>
-              ))}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom copyright */}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "20px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <div style={{ fontSize: "12px", fontWeight: 600, color: "rgba(255,255,255,0.4)", marginBottom: "4px" }}>
+                (주)포디비전 · WORLD WIDE 4D SOLUTION
+              </div>
+              <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.22)", lineHeight: 1.8 }}>
+                경기도 고양시 일산동 고봉로 32-19 남정씨티프라자 7차 504호
+              </div>
+              <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.22)", marginTop: "2px" }}>
+                COPYRIGHT 2007–2026 4D VISION ALL RIGHTS RESERVED
+              </div>
             </div>
+            <Link
+              href="/contact"
+              style={{ fontSize: "13px", color: "#D4920A", textDecoration: "none", fontWeight: 600, padding: "8px 18px", border: "1px solid rgba(212,146,10,0.3)", borderRadius: "8px" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(212,146,10,0.08)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+            >
+              도입 문의하기 →
+            </Link>
           </div>
         </div>
       </div>

@@ -130,6 +130,13 @@ export default function PricingPage() {
               <Phone style={{ width: "18px", height: "18px" }} />
               031-901-4823
             </a>
+            <a
+              href="tel:010-9039-0329"
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)", padding: "14px 28px", borderRadius: "12px", fontWeight: 600, fontSize: "16px", textDecoration: "none" }}
+            >
+              <Phone style={{ width: "18px", height: "18px" }} />
+              010-9039-0329
+            </a>
           </div>
         </div>
       </section>
@@ -298,6 +305,13 @@ export default function PricingPage() {
           >
             <Phone style={{ width: "16px", height: "16px" }} />
             031-901-4823
+          </a>
+          <a
+            href="tel:010-9039-0329"
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)", padding: "16px 32px", borderRadius: "12px", fontWeight: 600, fontSize: "16px", textDecoration: "none" }}
+          >
+            <Phone style={{ width: "16px", height: "16px" }} />
+            010-9039-0329
           </a>
         </div>
       </section>
