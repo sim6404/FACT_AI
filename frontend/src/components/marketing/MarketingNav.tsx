@@ -226,10 +226,10 @@ export function MarketingNav() {
                     ))}
                   </div>
                   <div className="mt-4 p-3 rounded-xl" style={{ background: "rgba(212,146,10,0.06)", border: "1px solid rgba(212,146,10,0.15)" }}>
-                    <p className="text-xs font-semibold" style={{ color: "#D4920A" }}>도입 문의</p>
+                    <p className="text-xs font-semibold" style={{ color: "#D4920A" }}>도입 문의 · 파트너십</p>
                     <p className="text-xs mt-1" style={{ color: "#888" }}>기업별 맞춤 제안을 받아보세요</p>
-                    <a href="mailto:ceo@4dvision.co.kr" className="text-xs font-semibold mt-2 block" style={{ color: "#D4920A" }}>
-                      ceo@4dvision.co.kr →
+                    <a href="/contact" className="text-xs font-semibold mt-2 block" style={{ color: "#D4920A" }}>
+                      문의하러 가기 →
                     </a>
                   </div>
                 </div>

@@ -26,10 +26,11 @@ const FOOTER_LINKS = {
     { label: "파트너 생태계", href: "/resources/partners" },
   ],
   서비스: [
+    { label: "도입 문의", href: "/contact" },
+    { label: "파트너십 신청", href: "/contact" },
     { label: "고객사례", href: "/cases" },
     { label: "무료 데모 신청", href: "/demo" },
     { label: "가격 문의", href: "/pricing" },
-    { label: "파트너십 문의", href: "/resources/partners" },
   ],
 };
 
